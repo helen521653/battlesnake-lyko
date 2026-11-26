@@ -1,0 +1,6 @@
+.git
+tests
+deploy
+scripts
+__pycache__
+*.jsonl

@@ -1,0 +1,23 @@
+# Запуск на VPS:  cd deploy && cp .env.example .env && (правим DOMAIN) && docker compose up -d --build
+services:
+  snake:
+    build: ..
+    restart: unless-stopped
+    environment:
+      - LATENCY_MS=${LATENCY_MS:-150}
+      - BS_AUTHOR=${BS_AUTHOR:-}
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on:
+      - snake
+volumes:
+  caddy_data:

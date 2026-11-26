@@ -1,0 +1,4 @@
+# Caddy сам получает HTTPS-сертификат Let's Encrypt для домена из переменной DOMAIN.
+{$DOMAIN} {
+	reverse_proxy snake:8000
+}

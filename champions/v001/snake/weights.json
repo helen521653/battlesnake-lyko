@@ -1,0 +1,18 @@
+{
+  "area": 1.0,
+  "area_self": 0.5,
+  "length": 10.0,
+  "len_cap": 4.0,
+  "len_target": 2.0,
+  "trap": 40.0,
+  "trap_opp": 20.0,
+  "food_need": 3.0,
+  "food_idle": 0.3,
+  "food_control": 1.0,
+  "health": 3.0,
+  "hunger_health": 35.0,
+  "hazard_cell": 0.3,
+  "starve": 300.0,
+  "opp_alive": 40.0,
+  "h2h": 30.0
+}

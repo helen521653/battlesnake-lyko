@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+tune_log.jsonl
+*.log
+deploy/.env
+logs/
