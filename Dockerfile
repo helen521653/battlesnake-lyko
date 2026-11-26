@@ -1,8 +1,17 @@
-# Змейка без внешних зависимостей: только стандартная библиотека Python.
 FROM python:3.12-slim
-WORKDIR /app
+
+WORKDIR /usr/app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install app
 COPY snake ./snake
-COPY server.py ./
+COPY main.py server.py ./
+
 ENV PORT=8000 PYTHONUNBUFFERED=1
 EXPOSE 8000
-CMD ["python", "server.py"]
+
+# Run Battlesnake
+CMD [ "python", "main.py" ]

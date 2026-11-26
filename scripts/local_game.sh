@@ -10,8 +10,8 @@ WA=${2:-snake/weights.json}
 WB=${3:-snake/weights.json}
 
 mkdir -p logs
-WEIGHTS="$WA" PORT=8001 python3 server.py > logs/snake_a.log 2>&1 & PA=$!
-WEIGHTS="$WB" PORT=8002 python3 server.py > logs/snake_b.log 2>&1 & PB=$!
+WEIGHTS="$WA" PORT=8001 python3 main.py > logs/snake_a.log 2>&1 & PA=$!
+WEIGHTS="$WB" PORT=8002 python3 main.py > logs/snake_b.log 2>&1 & PB=$!
 trap 'kill $PA $PB 2>/dev/null' EXIT
 sleep 1.5
 

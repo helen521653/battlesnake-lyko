@@ -1,14 +1,16 @@
 # Battlesnake: змейка на Python
 
 Змейка для [arena.battlesnake.com](https://arena.battlesnake.com), ориентированная на режим Duels.
-Написана на чистом Python 3.8+ (нужна только стандартная библиотека, установка зависимостей не требуется)
-и отвечает быстрее чем за 500 мс на одном ядре процессора.
+Написана на Python 3.8+ на основе официального стартового шаблона
+[starter-snake-python](https://github.com/BattlesnakeOfficial/starter-snake-python): HTTP-часть на Flask,
+логика — в пакете `snake/` (только стандартная библиотека). Отвечает быстрее чем за 500 мс на одном ядре процессора.
 
 ## Быстрый старт
 
 ```bash
-python3 server.py                      # сервер на http://localhost:8000 (порт задаётся через $PORT)
-python3 -m unittest discover tests     # тесты правил, поиска и HTTP-сервера
+pip install -r requirements.txt        # Flask (лучше в виртуальном окружении: python3 -m venv .venv)
+python3 main.py                        # сервер на http://localhost:8000 (порт задаётся через $PORT)
+python3 -m unittest discover tests     # тесты правил, поиска и HTTP-обработчиков
 ```
 
 Или в Docker:
@@ -23,7 +25,7 @@ docker run -p 8000:8000 snake
 1. Установите официальный CLI `battlesnake`:
    `go install github.com/BattlesnakeOfficial/rules/cli/battlesnake@latest`
    или скачайте бинарник со страницы [releases](https://github.com/BattlesnakeOfficial/rules/releases).
-2. Запустите змейку (`python3 server.py`) и сыграйте с ней дуэль против любой другой змейки:
+2. Запустите змейку (`python3 main.py`) и сыграйте с ней дуэль против любой другой змейки:
 
 ```bash
 battlesnake play -W 11 -H 11 -g standard -t 500 \
@@ -42,7 +44,8 @@ battlesnake play -W 11 -H 11 -g standard -t 500 \
 | [snake/search.py](snake/search.py) | Параноидальный минимакс с альфа-бета отсечением и итеративным углублением по времени |
 | [snake/evaluate.py](snake/evaluate.py) | Оценка позиции |
 | [snake/weights.json](snake/weights.json) | Веса оценки |
-| [snake/api.py](snake/api.py), [server.py](server.py) | Battlesnake API v1: `GET /`, `POST /start`, `/move`, `/end` |
+| [main.py](main.py), [server.py](server.py) | Точка входа и Flask-сервер из стартового шаблона: `GET /`, `POST /start`, `/move`, `/end` |
+| [snake/api.py](snake/api.py) | Разбор запроса и выбор хода с учётом лимита времени |
 | [bench.py](bench.py), [harness/](harness/) | Стенд для hill-climbing: независимый рефери, пул соперников, сравнение с чемпионом |
 | [champions/](champions/) | Замороженные версии-чемпионы v001, v002, … |
 | [experiments/JOURNAL.md](experiments/JOURNAL.md) | Журнал экспериментов |

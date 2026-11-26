@@ -1,6 +1,8 @@
-__pycache__/
+*.DS_Store
 *.pyc
+__pycache__/
+.venv/
 tune_log.jsonl
 *.log
-deploy/.env
 logs/
+deploy/.env
